@@ -12,6 +12,7 @@ Sistem ini mengelola stok produk di berbagai lokasi fisik dan mencatat mutasi ba
 1. Clone
 2. Copy File .env -> cp .env.example .env
   pastikan sama dengan yang dibawah ini agar matching dengan docker
+
 DB_CONNECTION=pgsql
 DB_HOST=db
 DB_PORT=5432
