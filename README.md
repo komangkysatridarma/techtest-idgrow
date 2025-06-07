@@ -24,5 +24,5 @@ DB_PASSWORD=postgres
 5. Generate Application Key -> php artisan key:generate -> php artisan storage:link
 6. Selesai
 
-Untuk dokumentasi postman yang sudah dipublish saya ada kendala, saya diblock oleh postman jadi tidak memungkinkan untuk mempublish suatu collection / workspace. jadi saya menaruh link untuk guest saja, namun saya juga bisa memberi file json nya agar nanti bisa langsung di import lalu langsung digunakan, saya akan call Tim HR untuk memberi file json tersebut jika diperlukan.
+Untuk dokumentasi postman yang sudah dipublish saya ada kendala, saya diblock oleh postman jadi tidak memungkinkan untuk mempublish suatu collection / workspace. Jadi saya menaruh link untuk guest saja, namun saya juga bisa memberi file json nya agar nanti bisa langsung di import lalu langsung digunakan, saya akan call tim HR untuk memberi file json tersebut jika diperlukan.
 https://komang-team.postman.co/workspace/Test-Software-Engineer---ID-GRO~240016d4-217b-4fb2-acb3-8e487ae0a0c8/collection/31047827-07697a66-de4d-40cb-aa32-6c11184947d0?action=share&creator=31047827
