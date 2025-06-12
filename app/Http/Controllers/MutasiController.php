@@ -139,27 +139,27 @@ class MutasiController extends Controller
     }
 
     public function indexByStaff(Request $request)
-{
-    $user = $request->user();
+    {
+        $user = $request->user();
 
-    if ($user->role !== 'Staff') {
-        return response()->json(['message' => 'Unauthorized'], 403);
+        if ($user->role !== 'Staff') {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $staffLokasiIds = $user->lokasi->pluck('id')->toArray();
+
+        $mutasi = Mutasi::whereHas('produkLokasi', function ($query) use ($staffLokasiIds) {
+                $query->whereIn('lokasi_id', $staffLokasiIds);
+            })
+            ->with(['produkLokasi.produk', 'produkLokasi.lokasi'])
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $mutasi
+        ]);
     }
-
-    $staffLokasiIds = $user->lokasi->pluck('id')->toArray();
-
-    $mutasi = Mutasi::whereHas('produkLokasi', function ($query) use ($staffLokasiIds) {
-            $query->whereIn('lokasi_id', $staffLokasiIds);
-        })
-        ->with(['produkLokasi.produk', 'produkLokasi.lokasi'])
-        ->orderBy('tanggal', 'desc')
-        ->get();
-
-    return response()->json([
-        'status' => 'success',
-        'data' => $mutasi
-    ]);
-}
 
     /**
      * Display the specified resource.

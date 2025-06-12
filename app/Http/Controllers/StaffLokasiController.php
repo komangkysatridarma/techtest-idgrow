@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class StaffLokasiController extends Controller
 {
-    // Assign staff ke lokasi
     public function store(Request $request)
     {
         $request->validate([
@@ -17,19 +16,16 @@ class StaffLokasiController extends Controller
             'lokasi_id' => 'required|exists:lokasis,id',
         ]);
 
-        // Cek apakah user adalah staff
         $user = User::findOrFail($request->user_id);
         if ($user->role !== 'Staff') {
             return response()->json(['message' => 'User bukan staff'], 422);
         }
 
-        // Assign ke pivot table
         $user->lokasi()->syncWithoutDetaching([$request->lokasi_id]);
 
         return response()->json(['message' => 'Staff berhasil ditambahkan ke lokasi']);
     }
 
-    // Lihat semua staff untuk lokasi tertentu
     public function getStaffByLokasi($lokasiId)
     {
         $lokasi = Lokasi::with('staff')->findOrFail($lokasiId);

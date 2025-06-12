@@ -20,7 +20,6 @@ class ProdukLokasiController extends Controller
             'stok' => 'required|integer|min:0',
         ]);
 
-        // Cegah duplikasi (produk_id + lokasi_id sudah ada)
         $existing = ProdukLokasi::where('produk_id', $validated['produk_id'])
             ->where('lokasi_id', $validated['lokasi_id'])
             ->first();
@@ -51,7 +50,6 @@ class ProdukLokasiController extends Controller
             'stok' => 'required|integer|min:0',
         ]);
 
-        // Cek jika kombinasi produk_id + lokasi_id sudah ada untuk entri lain
         $duplicate = ProdukLokasi::where('produk_id', $validated['produk_id'])
             ->where('lokasi_id', $validated['lokasi_id'])
             ->where('id', '!=', $id)
